@@ -15,7 +15,16 @@ sys
 usps-api
 xlwt
 ```
-
+## Usage
+Usage is pretty straight forward.
+```text
+bpt.py -i <file containing tracking numbers> -o <your output file (be sure to add the .xls extention)>
+```
+You input text file should be formatted like this:
+```text
+# - Package Description
+# - Package Description
+```
 
 ## License
 [WTFPL](http://www.wtfpl.net/)
