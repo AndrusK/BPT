@@ -12,7 +12,7 @@ You will also need the following python packages:
 argparse
 json
 sys
-USPSApi
+usps-api
 xlwt
 ```
 
