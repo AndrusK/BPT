@@ -12,9 +12,10 @@ packages = []
 
 
 def returnPackage(tracking, desc):
-    packageStatus = usps_instance.track(tracking).result.get(
+    try:
+        packageStatus = usps_instance.track(tracking).result.get(
         'TrackResponse').get('TrackInfo').get('TrackSummary')
-    return {'tracking': tracking,
+        return {'tracking': tracking,
             'desc': desc,
             'time': packageStatus.get('EventTime'),
             'date': packageStatus.get('EventDate'),
@@ -22,7 +23,17 @@ def returnPackage(tracking, desc):
             'city': packageStatus.get('EventCity'),
             'status': packageStatus.get('Event')
             }
-
+    except:
+        packageStatus = usps_instance.track(tracking).result.get(
+        'TrackResponse').get('TrackInfo').get('Error')
+        return {'tracking': tracking,
+            'desc': desc,
+            'time': "N\A",
+            'date': "N\A",
+            'state': "N\A",
+            'city': "N\A",
+            'status': packageStatus.get('Description')
+            }
 
 def standardizeInput(string):
     if "-" in string:
